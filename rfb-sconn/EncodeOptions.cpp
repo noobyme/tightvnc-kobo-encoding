@@ -45,6 +45,8 @@ void EncodeOptions::reset()
   m_enableHextile = false;
   m_enableZrle = false;
   m_enableTight = false;
+  m_enableMono1bpp = false;
+  m_enableMono1bppZ = false;
 
   m_enableCopyRect = false;
   m_enableRichCursor = false;
@@ -74,6 +76,10 @@ void EncodeOptions::setEncodings(std::vector<int> *list)
       m_enableHextile = true;
     } else if (code == EncodingDefs::RRE) {
       m_enableRRE = true;
+    } else if (code == EncodingDefs::MONO1BPP) {
+      m_enableMono1bpp = true;
+    } else if (code == EncodingDefs::MONO1BPPZ) {
+      m_enableMono1bppZ = true;
     } else if (code == EncodingDefs::COPYRECT) {
       m_enableCopyRect = true;
     } else if (code == PseudoEncDefs::RICH_CURSOR) {
@@ -114,6 +120,10 @@ bool EncodeOptions::encodingEnabled(int code) const
     return m_enableZrle;
   case EncodingDefs::TIGHT:
     return m_enableTight;
+  case EncodingDefs::MONO1BPP:
+    return m_enableMono1bpp;
+  case EncodingDefs::MONO1BPPZ:
+    return m_enableMono1bppZ;
   }
   return false;
 }
@@ -170,5 +180,7 @@ bool EncodeOptions::normalEncoding(int code)
           code == EncodingDefs::RRE ||
           code == EncodingDefs::HEXTILE ||
           code == EncodingDefs::ZRLE ||
-          code == EncodingDefs::TIGHT);
+          code == EncodingDefs::TIGHT ||
+          code == EncodingDefs::MONO1BPP ||
+          code == EncodingDefs::MONO1BPPZ);
 }

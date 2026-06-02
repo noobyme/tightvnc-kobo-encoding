@@ -100,6 +100,8 @@ protected:
   bool m_enableHextile;
   bool m_enableZrle;
   bool m_enableTight;
+  bool m_enableMono1bpp;
+  bool m_enableMono1bppZ;
 
   int m_compressionLevel;
   int m_jpegQualityLevel;

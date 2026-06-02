@@ -39,12 +39,28 @@ public:
   static const int TIGHT = 7;
   static const int ZRLE = 16;
 
+  // Mono 1-bpp: 8 pixels per byte (MSB = leftmost), Floyd-Steinberg dithered.
+  // Wire format per rect:
+  //   [rect header 12 B] [uint8 dither_mode 1 B] [packed data ceil(w/8)*h B]
+  static const int MONO1BPP = -752; // 0xFFFFFD10 as unsigned 32-bit
+
+  // Mono 1-bpp + zlib: same dithering, packed bits deflated.
+  // Wire format per rect:
+  //   [rect header 12 B] [uint8 dither_mode 1 B]
+  //   [uint32 nBytes 4 B] [compressed data nBytes B]
+  static const int MONO1BPPZ = -753; // 0xFFFFFD0F as unsigned 32-bit
+
+  // Inline dither-mode byte value sent inside each Mono1bpp / Mono1bppZ rect.
+  static const int MONO1BPP_DITHER_FLOYD_STEINBERG = 0;
+
   static const char *const SIG_RAW;
   static const char *const SIG_COPYRECT;
   static const char *const SIG_RRE;
   static const char *const SIG_HEXTILE;
   static const char *const SIG_TIGHT;
   static const char *const SIG_ZRLE;
+  static const char *const SIG_MONO1BPP;
+  static const char *const SIG_MONO1BPPZ;
 };
 
 //

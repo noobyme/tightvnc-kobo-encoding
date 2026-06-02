@@ -265,6 +265,8 @@
     <ClCompile Include="Encoder.cpp" />
     <ClCompile Include="EncoderStore.cpp" />
     <ClCompile Include="HextileEncoder.cpp" />
+    <ClCompile Include="Mono1bppEncoder.cpp" />
+    <ClCompile Include="Mono1bppZEncoder.cpp" />
     <ClCompile Include="JpegCompressor.cpp" />
     <ClCompile Include="JpegEncoder.cpp" />
     <ClCompile Include="RfbClient.cpp" />
@@ -289,6 +291,8 @@
     <ClInclude Include="Encoder.h" />
     <ClInclude Include="EncoderStore.h" />
     <ClInclude Include="HextileEncoder.h" />
+    <ClInclude Include="Mono1bppEncoder.h" />
+    <ClInclude Include="Mono1bppZEncoder.h" />
     <ClInclude Include="HextileTile.h" />
     <ClInclude Include="JpegCompressor.h" />
     <ClInclude Include="JpegEncoder.h" />

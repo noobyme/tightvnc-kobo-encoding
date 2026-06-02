@@ -28,6 +28,8 @@
 #include "HextileEncoder.h"
 #include "ZrleEncoder.h"
 #include "TightEncoder.h"
+#include "Mono1bppEncoder.h"
+#include "Mono1bppZEncoder.h"
 
 EncoderStore::EncoderStore(PixelConverter *pixelConverter, DataOutputStream *output)
 : m_encoder(0),
@@ -108,7 +110,9 @@ bool EncoderStore::encodingSupported(int encType)
           encType == EncodingDefs::RRE ||
           encType == EncodingDefs::HEXTILE ||
           encType == EncodingDefs::ZRLE ||
-          encType == EncodingDefs::TIGHT);
+          encType == EncodingDefs::TIGHT ||
+          encType == EncodingDefs::MONO1BPP ||
+          encType == EncodingDefs::MONO1BPPZ);
 }
 
 Encoder *EncoderStore::allocateEncoder(int encType) const
@@ -122,6 +126,10 @@ Encoder *EncoderStore::allocateEncoder(int encType) const
     return new HextileEncoder(m_pixelConverter, m_output);
   case EncodingDefs::RRE:
     return new RreEncoder(m_pixelConverter, m_output);
+  case EncodingDefs::MONO1BPP:
+    return new Mono1bppEncoder(m_pixelConverter, m_output);
+  case EncodingDefs::MONO1BPPZ:
+    return new Mono1bppZEncoder(m_pixelConverter, m_output);
   case EncodingDefs::RAW:
     return new Encoder(m_pixelConverter, m_output);
   default:
